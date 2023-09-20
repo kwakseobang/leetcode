@@ -29,7 +29,7 @@ public:
         return mergeSort(left,right);
     }
     ListNode* mergeSort(ListNode* left,ListNode* right){
-        ListNode* temp = new ListNode(0);
+        ListNode* temp = new ListNode;
         ListNode* newHead = temp;
         while (left && right){
             if(left->val <= right->val){
