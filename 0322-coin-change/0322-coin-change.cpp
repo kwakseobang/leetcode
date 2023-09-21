@@ -5,8 +5,10 @@ public:
         table[0] = 0;
         int len = coins.size();
         for(int i = 0; i<len;i++){
-            for(int j = coins[i]; j < amount+1; j++){
+            for(int j = 1; j < amount+1; j++){
+                if(j-coins[i]>=0){
                 table[j] = min(table[j],table[j-coins[i]]+1);
+                }
             }
         }
         return (table[amount] != INT_MAX-1) ? table[amount]: -1;
