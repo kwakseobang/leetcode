@@ -21,7 +21,7 @@ public:
         }
         if(list1->val >=list2->val){
             list2->next = mergeTwoLists(list1,list2->next);
-            return list2;
+            return list2;   //첨에 return을 list1으로 해서 안풀렸음
         }
         else {
             list1->next = mergeTwoLists(list1->next,list2);
