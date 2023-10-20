@@ -10,48 +10,45 @@
  */
 class Solution {
 public:
+    //병합정렬 사용
     ListNode* sortList(ListNode* head) {
-        if (!head || !head->next){
-            return head;
+        if(!head || !head->next) return head; //더 이상 분할되지 않을 시 return
+        
+        ListNode* newHead = head;
+        ListNode* midTail =nullptr; //중간 노드
+        ListNode* tail = head; //마지막 노드
+        while(tail && tail->next ){
+            midTail = newHead;
+            newHead = newHead->next;
+            tail = tail->next->next;
         }
-        ListNode* midTail = head;
-        ListNode* one = head;
-        ListNode* two = head;
-        while (two && two->next) //mid 위치
-        {
-            midTail = one;
-            one = one->next;
-            two = two->next->next;
-        }
-        midTail->next = nullptr; //중간노드 끊김
+        midTail->next = nullptr; //중간노드 찾고 끊어주는 작업
         ListNode* left = sortList(head);
-        ListNode* right = sortList(one);
-        return mergeSort(left,right);
+        ListNode* right = sortList(newHead);
+        // merge(left,right);
+        return merge(left,right);
     }
-    ListNode* mergeSort(ListNode* left,ListNode* right){
+    
+    ListNode* merge(ListNode* left,ListNode* right){
         ListNode* temp = new ListNode;
         ListNode* newHead = temp;
-        while (left && right){
-            if(left->val <= right->val){
+        while(left && right){
+            if(left->val > right->val){
+                temp->next= right;
+                right = right->next;
+            }
+            else {
                 temp->next = left;
                 left = left->next;
             }
-            else{
-                temp->next = right;
-                right = right->next;
-            }
             temp = temp->next;
         }
-        //비교 끝난 후 남은 연결리스트 정리
-        if (left){
-            temp->next = left;
             
-        }
-        else {
-            temp -> next = right;
-
-        }
+        if(left) temp->next = left;
+        else temp->next = right;
+        
         return newHead->next;
         
-            }
+    }
+            
 };
