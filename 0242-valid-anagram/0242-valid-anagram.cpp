@@ -25,10 +25,9 @@ public:
     for(auto &pair: m1){
         char key = pair.first;
         if(m1[key] != m2[key]){
-            cout <<"failed.."<<endl;
             return false;
         }
-        cout << key<<" "<<m1[key] <<" "<<endl;
+
     }
     return true;
     }
