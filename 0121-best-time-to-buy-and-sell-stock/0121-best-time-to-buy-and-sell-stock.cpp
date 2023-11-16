@@ -10,8 +10,8 @@ public:
         for(int i = 1; i < len; i++){
             cmp = min(cmp,prices[i-1]);
              dp[i] = max(prices[i]-cmp,dp[i-1]);
-            maxProfit = max(dp[i],maxProfit);
         }
-        return  maxProfit;
+        return *max_element(dp.begin(),dp.end());
+        
     }
 };
