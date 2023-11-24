@@ -1,12 +1,12 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int>res;
-        map<int,int>m;
-        for(int i = 0; i<nums.size();i++){
-            int key = target-nums[i];
-            if(m.contains(key)){
-                res.push_back(m[key]);
+        map<int,int> m;
+        vector<int> res;
+        for(int i = 0; i<nums.size(); i++){
+            int cmp=target - nums[i];
+            if(m.contains(cmp)){
+                res.push_back(m[cmp]);
                 res.push_back(i);
                 break;
             }
