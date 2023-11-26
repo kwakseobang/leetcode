@@ -1,28 +1,24 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-        stringstream stream(s);
-        string ss;
-        vector<string> str;
-        while(stream >> ss){
-            str.push_back(ss);
+        map<char,string> m; 
+        map<string,char> m2;
+        stringstream ss(s);
+        vector<string> v;
+        string str;
+        while(ss >> str){
+            v.push_back(str);
         }
-        if(pattern.size() != str.size())return false;
-
-        unordered_map<char,string> map;
-        unordered_map<string,char> map2;
-        for(int i = 0; i<str.size(); i++){
-            if(!map.count(pattern[i])){
-                map2[str[i]] = pattern[i];
-                map[pattern[i]] = str[i];
-            }
-            else continue;
+        if(v.size() != pattern.size()) return false;
+        for(int i=0; i<pattern.size();i++){
+            if(m.find(pattern[i]) == m.end()){
+                m2[v[i]] = pattern[i]; //키를 문자로 값을 패턴으로
+                m[pattern[i]] = v[i]; //반대
         }
-         for(int i = 0; i<str.size(); i++){
-            if (map2[str[i]]!= pattern[i]){return false;}
-         }
-         return true;
-
-        
+        }
+        for(int i = 0; i< pattern.size(); i++){
+            if (m2[v[i]] != pattern[i]) return false;
+        }
+        return true;
     }
 };
