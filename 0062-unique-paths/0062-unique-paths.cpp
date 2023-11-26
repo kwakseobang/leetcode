@@ -1,12 +1,12 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>> v (m,vector<int>(n,0));
+        vector<vector<int>> v (m,vector<int>(n,1)); //각각의 공간에 오는 최소의 수는 1개이상이여서. 처음에 밑에 주석처리 코드 처럼했는데 코드 줄일려고.
         //i행 0열,0행 j열 로 초기화 이 공간은 주어진 조건 상 1가지 밖에 없기때문에.
-        for(int i = 0; i<m; i++)
-            v[i][0] = 1;
-        for(int j = 0; j<n; j++)
-            v[0][j] = 1;
+        // for(int i = 0; i<m; i++)
+        //     v[i][0] = 1;
+        // for(int j = 0; j<n; j++)
+        //     v[0][j] = 1;
         
         for(int i = 1; i<m;i++){
             for(int j = 1;j<n;j++){
