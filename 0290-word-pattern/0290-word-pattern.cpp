@@ -6,7 +6,7 @@ public:
         stringstream ss(s);
         vector<string> v;
         string str;
-        while (getline(ss, str, ' ')){
+        while (ss >> str){
             v.push_back(str);
         }
         if(v.size() != pattern.size()) return false;
